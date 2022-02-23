@@ -11,8 +11,11 @@ It is expected that all new SQL code and database will adhere to these standards
 These general rules will help your database be performant, standard, future-proof and portable.
 
 - Primary Keys 
+
   SQL Server will perform best (lookups and joins) when a small numerical value is used for the primary key/clustered index. 
+
   If ID generation will occur within the database only, always use primary keys and use INT IDENTITY for primary keys
+
       CREATE TABLE TableExample 
       (
         TableExampleID INT IDENTITY (1,1)
@@ -22,6 +25,7 @@ These general rules will help your database be performant, standard, future-proo
       (
         TableExampleID INT IDENTITY (1,1)
       )
+
   If ID generation will occur within Code, outside of the control of the database, you still want to use primary keys and but cannot use INT IDENTITY for primary keys, as the value will be generated elsewhere. 
 
   <b>Exceptions:</b>
