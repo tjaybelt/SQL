@@ -10,19 +10,19 @@ It is expected that all new SQL code and database will adhere to these standards
 
 These general rules will help your database be performant, standard, future-proof and portable.
 
-- Primary Keys 
-  SQL Server will perform best (lookups and joins) when a small numerical value is used for the primary key/clustered index. 
-  If ID generation will occur within the database only, always use primary keys and use INT IDENTITY for primary keys
-      CREATE TABLE TableExample 
+- Always use primary keys and use INT IDENTITY for primary keys
+
+  SQL Server will perform best (lookups and joins) when a small numerical value is used for the primary key/clustered index.
+ 
+      CREATE TABLE TableExample
       (
-        TableExampleID INT IDENTITY (1,1)
+      TableExampleID INT IDENTITY (1,1)
       )
-      
-      DECLARE @TableExample TABLE 
+
+      DECLARE @TableExample TABLE
       (
-        TableExampleID INT IDENTITY (1,1)
+      TableExampleID INT IDENTITY (1,1)
       )
-  If ID generation will occur within Code, outside of the control of the database, you still want to use primary keys and but cannot use INT IDENTITY for primary keys, as the value will be generated elsewhere. 
 
   <b>Exceptions:</b>
 
@@ -162,13 +162,11 @@ These general rules will help your database be performant, standard, future-proo
 
 - Database names should be singular, not plural and should be named after the context they are persisting
 
-- Table Names could be argued to be named singular, not plural. 
-  
-  However, using inheritance and an ORM could make one lean towards plural. 
-  
-  Whatever choice is made, make it based on internal needs and facts and reasons.
-  
-  Table Names should provide a clear, concise description of the entity the table contains.
+- Table names should be singular, not plural
+
+  Avoid adding s/es to the end of table names
+
+  Use the singular form (i.e., the Loan table and not the Loans table).
 
 - Associative Tables should use the names of their foreign keys
 
